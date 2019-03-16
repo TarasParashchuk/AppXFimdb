@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppXFimdb.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,11 @@ namespace AppXFimdb
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            this.BindingContext = new MainViewModel();
         }
     }
 }

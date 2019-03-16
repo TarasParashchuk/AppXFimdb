@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:AppXFimdb"
-             x:Class="AppXFimdb.MainPage">
-
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
-
-</ContentPage>
+             x:Class="AppXFimdb.MainPage"
+             Title="Каталог товарів">
+    <ListView x:Name="ListForCatalog" ItemsSource="{Binding ListFilms, Mode=TwoWay}" SelectedItem="{Binding SelectItemFilm, Mode=TwoWay}" 
+              HasUnevenRows="True" CachingStrategy="RecycleElement"
+              SelectionMode="None" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ImageCell ImageSource="{Binding Cover_url}" Text="{Binding Title}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage>
