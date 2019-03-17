@@ -1,13 +1,10 @@
 ﻿using AppXFimdb.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace AppXFimdb
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
     {
         public MainPage()
@@ -17,7 +14,7 @@ namespace AppXFimdb
 
         protected override void OnAppearing()
         {
-            this.BindingContext = new MainViewModel();
+            this.BindingContext = new MainViewModel() { Navigation = this.Navigation };
         }
     }
 }

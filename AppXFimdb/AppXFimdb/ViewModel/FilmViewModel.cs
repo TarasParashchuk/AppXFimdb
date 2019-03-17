@@ -1,37 +1,54 @@
-﻿using System;
+﻿using AppXFimdb.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using Xamarin.Forms;
 
 namespace AppXFimdb.ViewModel
 {
-    class FilmViewModel
+    class FilmViewModel : INotifyPropertyChanged
     {
-        private string url;
-        private string title;
+        private Film Item;
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        public string Cover_url
+        public FilmViewModel(ImageSource _url, string _title)
         {
-            get => url;
+            Item = new Film();
+            Item.Cover_url = _url;
+            Item.Title = _title;
+        }
+
+        public ImageSource Cover_url
+        {
+            get => Item.Cover_url;
             set
             {
-                if(url != value)
+                if(Item.Cover_url != value)
                 {
-                    url = value;
+                    Item.Cover_url = value;
+                    OnPropertyChanged("Cover_url");
                 }
             }
         }
 
         public string Title
         {
-            get => title;
+            get => Item.Title;
             set
             {
-                if (title != value)
+                if (Item.Title != value)
                 {
-                    title = value;
+                    Item.Title = value;
+                    OnPropertyChanged("Title");
                 }
             }
+        }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
